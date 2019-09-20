@@ -77,3 +77,12 @@ def to_square_inches(area: float):
     :return: Area in square inches.
     """
     return area / math.pow(MILLIMETER_PER_INCH, 2)
+
+
+def to_square_millimeters(area: float):
+    """
+    Converts area from square inches to square millimeters.
+    :param area: Area in square inches.
+    :return: Area in square millimeters.
+    """
+    return area * math.pow(MILLIMETER_PER_INCH, 2)

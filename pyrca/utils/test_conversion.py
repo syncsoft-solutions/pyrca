@@ -28,6 +28,11 @@ class TestConversion(unittest.TestCase):
         result = to_square_inches(area)
         self.assertAlmostEqual(result, 0.0155, 3, msg='Error in conversion!')
 
+    def test_to_square_millimeters(self):
+        area = 10
+        result = to_square_millimeters(area)
+        self.assertAlmostEqual(result, 6451.6, 1, msg='Error in conversion!')
+
 
 if __name__ == '__main__':
     unittest.main()
