@@ -47,8 +47,8 @@ def in_to_mm(inch):
 
 def linear_convert(distance: float, unit: Unit):
     """
-    Converts a linear measurement automatically based on the unit given.
-    :param distance: Distance in either mm or inch
+    Converts a metric linear measurement automatically based on the unit given.
+    :param distance: Distance in either mm
     :param unit: Unit set by the application
     :return: The converted distance.
     """
@@ -56,3 +56,15 @@ def linear_convert(distance: float, unit: Unit):
         return mm_to_in(distance)
     else:
         return distance
+
+
+def pressure_convert(pressure: float, unit: Unit):
+    """
+    Converts a metric pressure measurement automatically based on the unit given
+    :param pressure: Pressure in MPa
+    :param unit: Unit set by the application
+    :return: The converted pressure.
+    """
+    if unit == Unit.ENGLISH:
+        return mpa_to_psi(pressure)
+    return pressure
