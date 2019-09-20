@@ -10,7 +10,7 @@ def psi_to_mpa(psi):
     """
     psi = psi / POUND_PER_KILOGRAM
     psi = psi * GRAVITY_METRIC
-    psi = psi / math.pow(25.4, 2)
+    psi = psi / math.pow(MILLIMETER_PER_INCH, 2)
     return psi
 
 
@@ -22,5 +22,9 @@ def mpa_to_psi(mpa):
     """
     mpa = mpa * POUND_PER_KILOGRAM
     mpa = mpa / GRAVITY_METRIC
-    mpa = mpa * math.pow(25.4, 2)
+    mpa = mpa * math.pow(MILLIMETER_PER_INCH, 2)
     return mpa
+
+
+def mm_to_in(mm):
+    return mm / MILLIMETER_PER_INCH
