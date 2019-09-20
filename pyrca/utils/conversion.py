@@ -27,4 +27,9 @@ def mpa_to_psi(mpa):
 
 
 def mm_to_in(mm):
+    """
+    Converts length in millimeter to inches.
+    :param mm:
+    :return:
+    """
     return mm / MILLIMETER_PER_INCH
