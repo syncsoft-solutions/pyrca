@@ -15,6 +15,11 @@ def psi_to_mpa(psi):
 
 
 def mpa_to_psi(mpa):
+    """
+    Converts pressure from MPa to PSI
+    :param mpa: Pressure in MPa
+    :return: Pressure in PSI
+    """
     mpa = mpa * POUND_PER_KILOGRAM
     mpa = mpa / GRAVITY_METRIC
     mpa = mpa * math.pow(25.4, 2)
