@@ -1,2 +1,5 @@
-.idea/
-pyrca_env/
+.idea/*
+env/*
+dist/*
+build/*
+pyrca.egg-info/*
