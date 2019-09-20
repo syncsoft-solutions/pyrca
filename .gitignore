@@ -3,3 +3,6 @@ env/*
 dist/*
 build/*
 pyrca.egg-info/*
+
+pyrca/__pycache__/
+pyrca/utils/__pycache__/
