@@ -68,3 +68,12 @@ def pressure_convert(pressure: float, unit: Unit):
     if unit == Unit.ENGLISH:
         return mpa_to_psi(pressure)
     return pressure
+
+
+def to_square_inches(area: float):
+    """
+    Converts area from square millimeter to square inches.
+    :param area: Area in square millimeter.
+    :return: Area in square inches.
+    """
+    return area / math.pow(MILLIMETER_PER_INCH, 2)

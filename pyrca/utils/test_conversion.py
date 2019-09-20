@@ -23,6 +23,11 @@ class TestConversion(unittest.TestCase):
         result = in_to_mm(inch)
         self.assertEqual(result, 254, msg='Wrong conversion!')
 
+    def test_to_square_inch(self):
+        area = 10
+        result = to_square_inches(area)
+        self.assertAlmostEqual(result, 0.0155, 3, msg='Error in conversion!')
+
 
 if __name__ == '__main__':
     unittest.main()
