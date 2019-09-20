@@ -14,3 +14,8 @@ print(str(psi) + ' PSI to MPa = ' + str(mpa))
 mm = 10
 inch = mm_to_in(mm)
 print(str(mm) + ' mm to inches = ' + str(inch))
+
+# Test for inches to millimeter conversion
+inch = 10
+mm = in_to_mm(inch)
+print(str(inch) + ' inches to mm = ' + str(mm))
