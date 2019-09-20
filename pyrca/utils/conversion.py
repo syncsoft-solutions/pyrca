@@ -1,5 +1,6 @@
 import math
 from .constants import *
+from pyrca.properties.unit import Unit
 
 
 def psi_to_mpa(psi):
@@ -42,3 +43,16 @@ def in_to_mm(inch):
     :return: Length in millimeter
     """
     return inch * MILLIMETER_PER_INCH
+
+
+def linear_convert(distance: float, unit: Unit):
+    """
+    Converts a linear measurement automatically based on the unit given.
+    :param distance: Distance in either mm or inch
+    :param unit: Unit set by the application
+    :return: The converted distance.
+    """
+    if unit == Unit.ENGLISH:
+        return mm_to_in(distance)
+    else:
+        return distance
