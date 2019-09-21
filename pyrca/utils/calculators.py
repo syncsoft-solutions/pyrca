@@ -149,3 +149,29 @@ def get_area_above_axis(axis_elevation: float, nodes: list):
     """
     _new_nodes = get_nodes_above_axis(axis_elevation, nodes)
     return calculate_area(_new_nodes)
+
+
+def has_intersected(elevation: float, node1: Node, node2: Node):
+    # Check if elevation is out of bounds
+    _lower_bound = lower(node1.y, node2.y)
+    _higher_bound = greater(node1.y, node2.y)
+
+    return _lower_bound < elevation < _higher_bound
+
+
+def lower(n1: float, n2: float):
+    _lower = n1
+
+    if n2 < _lower:
+        _lower = n2
+
+    return _lower
+
+
+def greater(n1: float, n2: float):
+    _greater = n1
+
+    if n2 > _greater:
+        _greater = n2
+
+    return _greater
