@@ -193,3 +193,14 @@ def get_intersection(elevation: float, node1: Node, node2: Node):
     x2 = (y2 - y1) / (y3 - y1) * (x3 - x1) + x1
 
     return Node(x2, y2)
+
+
+def distance_between_two_nodes(node1: Node, node2: Node):
+    """
+    Calculates distance between two nodes
+    :param node1:
+    :param node2:
+    :return:
+    """
+    dist = math.sqrt(math.pow(node1.y - node2.y, 2) + math.pow(node1.x - node2.x, 2))
+    return dist
