@@ -72,3 +72,21 @@ def get_highest_node(nodes: list):
             _highest_node = _node
 
     return _highest_node
+
+
+def get_lowest_node(nodes: list):
+    """
+        Get the bottommost node from the section.
+        :param nodes: Nodes list. The coordinates of each corner of a section.
+        :return: Lowest node.
+        """
+    if len(nodes) == 0:
+        return None
+
+    _lowest_node = nodes[0]
+
+    for _node in nodes:
+        if _node.y < _lowest_node.y:
+            _lowest_node = _node
+
+    return _lowest_node
