@@ -10,8 +10,8 @@ def calculate_area(nodes: list):
     """
     _nodes = nodes.copy()
 
-    # Add the last node to the list
-    _nodes.append(_nodes[-1])
+    # Add the first node to the list
+    _nodes.append(_nodes[0])
 
     # Number of nodes
     _n = len(_nodes)
@@ -36,8 +36,8 @@ def calculate_centroid_y(nodes: list):
     """
     _nodes = nodes.copy()
 
-    # Add the last node to the list
-    _nodes.append(_nodes[-1])
+    # Add the first node to the list
+    _nodes.append(_nodes[0])
 
     # Number of nodes
     _n = len(_nodes)
@@ -104,11 +104,16 @@ def get_centroid_above_axis(axis_elevation: float, nodes: list):
 
     _intersected = 0
 
-    for i in range(len(_nodes)):
+    for i in range(1, len(_nodes)):
         y1 = _nodes[i - 1].y
         y3 = _nodes[i].y
         x1 = _nodes[i - 1].x
         x3 = _nodes[i].x
+
+        if y1 == y3:
+            _new_nodes.append(_nodes[i])
+            continue
+
         x2 = (axis_elevation - y3) / (y1 - y3) * (x1 - x3) + x3
 
         if _intersected < 2:
@@ -119,5 +124,8 @@ def get_centroid_above_axis(axis_elevation: float, nodes: list):
 
         if _nodes[i].y >= axis_elevation:
             _new_nodes.append(_nodes[i])
+
+    for _n in _new_nodes:
+        print(_n.x, _n.y)
 
     return calculate_centroid_y(_new_nodes)
