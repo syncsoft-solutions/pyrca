@@ -47,8 +47,8 @@ def calculate_centroid_y(nodes: list):
     _kd = 0
 
     for i in range(_n - 1):
-        _kd += (_nodes[i].y + _nodes[i+1].y) * \
-              (_nodes[i].x * _nodes[i+1].y - _nodes[i+1].x * _nodes[i].y)
+        _kd += (_nodes[i].y + _nodes[i + 1].y) * \
+               (_nodes[i].x * _nodes[i + 1].y - _nodes[i + 1].x * _nodes[i].y)
 
     _kd = abs(_kd / (6 * _area))
     _kd = abs(get_highest_node(_nodes).y - _kd)
@@ -76,10 +76,10 @@ def get_highest_node(nodes: list):
 
 def get_lowest_node(nodes: list):
     """
-        Get the bottommost node from the section.
-        :param nodes: Nodes list. The coordinates of each corner of a section.
-        :return: Lowest node.
-        """
+    Get the bottommost node from the section.
+    :param nodes: Nodes list. The coordinates of each corner of a section.
+    :return: Lowest node.
+    """
     if len(nodes) == 0:
         return None
 
@@ -90,3 +90,34 @@ def get_lowest_node(nodes: list):
             _lowest_node = _node
 
     return _lowest_node
+
+
+def get_centroid_above_axis(axis_elevation: float, nodes: list):
+    """
+    Calculates the centroid of section above neutral axis
+    :param axis_elevation: Neutral axis elevation
+    :param nodes: nodes: Nodes list. The coordinates of each corner of a section.
+    :return:
+    """
+    _nodes = nodes.copy()
+    _new_nodes = []
+
+    _intersected = 0
+
+    for i in range(len(_nodes)):
+        y1 = _nodes[i - 1].y
+        y3 = _nodes[i].y
+        x1 = _nodes[i - 1].x
+        x3 = _nodes[i].x
+        x2 = (axis_elevation - y3) / (y1 - y3) * (x1 - x3) + x3
+
+        if _intersected < 2:
+            if (y1 <= axis_elevation < y3) or (y1 >= axis_elevation > y3):
+                # We got intersection
+                _new_nodes.append(Node(x2, axis_elevation))
+                _intersected += 1
+
+        if _nodes[i].y >= axis_elevation:
+            _new_nodes.append(_nodes[i])
+
+    return calculate_centroid_y(_new_nodes)
