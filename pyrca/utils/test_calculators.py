@@ -1,7 +1,7 @@
 import unittest
 from ..properties.node import Node
 from .calculators import calculate_area, calculate_centroid_y, \
-    get_centroid_above_axis
+    get_centroid_above_axis, get_area_above_axis
 
 
 class TestCalculators(unittest.TestCase):
@@ -20,6 +20,10 @@ class TestCalculators(unittest.TestCase):
     def test_centroid_above_axis(self):
         result = get_centroid_above_axis(200.0, self.data)
         self.assertEqual(result, 100, msg='Error in calculating centroid above axis')
+
+    def test_area_above_axis(self):
+        result = get_area_above_axis(200, self.data)
+        self.assertEqual(result, 40000, msg='Error calculating area above axis!')
 
 
 if __name__ == '__main__':

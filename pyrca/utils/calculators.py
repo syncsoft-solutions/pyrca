@@ -138,3 +138,14 @@ def get_centroid_above_axis(axis_elevation: float, nodes: list):
     _new_nodes = get_nodes_above_axis(axis_elevation, nodes)
 
     return calculate_centroid_y(_new_nodes)
+
+
+def get_area_above_axis(axis_elevation: float, nodes: list):
+    """
+    Calculates area above an axis.
+    :param axis_elevation:
+    :param nodes:
+    :return:
+    """
+    _new_nodes = get_nodes_above_axis(axis_elevation, nodes)
+    return calculate_area(_new_nodes)
