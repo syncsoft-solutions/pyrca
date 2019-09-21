@@ -175,3 +175,21 @@ def greater(n1: float, n2: float):
         _greater = n2
 
     return _greater
+
+
+def get_intersection(elevation: float, node1: Node, node2: Node):
+    """
+    Gets the intersection node of an elevation and 2 nodes
+    :param elevation:
+    :param node1:
+    :param node2:
+    :return:
+    """
+    y1 = node1.y
+    y2 = elevation
+    y3 = node2.y
+    x1 = node1.x
+    x3 = node2.x
+    x2 = (y2 - y1) / (y3 - y1) * (x3 - x1) + x1
+
+    return Node(x2, y2)
