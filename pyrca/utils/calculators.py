@@ -92,10 +92,10 @@ def get_lowest_node(nodes: list):
     return _lowest_node
 
 
-def get_centroid_above_axis(axis_elevation: float, nodes: list):
+def get_nodes_above_axis(axis_elevation: float, nodes: list):
     """
-    Calculates the centroid of section above neutral axis
-    :param axis_elevation: Neutral axis elevation
+    Get all nodes of section above an axis
+    :param axis_elevation: Given axis elevation
     :param nodes: nodes: Nodes list. The coordinates of each corner of a section.
     :return:
     """
@@ -125,7 +125,16 @@ def get_centroid_above_axis(axis_elevation: float, nodes: list):
         if _nodes[i].y >= axis_elevation:
             _new_nodes.append(_nodes[i])
 
-    for _n in _new_nodes:
-        print(_n.x, _n.y)
+    return _new_nodes
+
+
+def get_centroid_above_axis(axis_elevation: float, nodes: list):
+    """
+    Calculates the centroid of section above given axis
+    :param axis_elevation: Given axis elevation
+    :param nodes: nodes: Nodes list. The coordinates of each corner of a section.
+    :return:
+    """
+    _new_nodes = get_nodes_above_axis(axis_elevation, nodes)
 
     return calculate_centroid_y(_new_nodes)
