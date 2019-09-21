@@ -217,3 +217,22 @@ def interpolate(x1: float, x3: float, y1: float, y2: float, y3: float):
     :return:
     """
     return (y2 - y3) / (y1 - y3) * (x1 - x3) + x3
+
+
+def sort_nodes_by_abscissa(nodes: list):
+    """
+    Using bubble sort to rearrange nodes in a list.
+    :param nodes:
+    :return:
+    """
+
+    # Bubble sort
+    _nodes = nodes.copy()
+    for i in range(len(_nodes) - 1):
+        for j in range(len(_nodes) - 1):
+            if _nodes[i].x < _nodes[i+1].x:
+                _temp = _nodes[i]
+                _nodes[i] = _nodes[i+1]
+                _nodes[i+1] = _temp
+
+    return _nodes
