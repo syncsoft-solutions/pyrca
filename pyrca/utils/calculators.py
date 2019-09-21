@@ -204,3 +204,16 @@ def distance_between_two_nodes(node1: Node, node2: Node):
     """
     dist = math.sqrt(math.pow(node1.y - node2.y, 2) + math.pow(node1.x - node2.x, 2))
     return dist
+
+
+def interpolate(x1: float, x3: float, y1: float, y2: float, y3: float):
+    """
+    Interpolation function.
+    :param x1:
+    :param x3:
+    :param y1:
+    :param y2:
+    :param y3:
+    :return:
+    """
+    return (y2 - y3) / (y1 - y3) * (x1 - x3) + x3
