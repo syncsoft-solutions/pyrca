@@ -179,6 +179,3 @@ class Section:
             _clippings_areas += get_area_above_axis(elevation, _clipping)
 
         return _main_section_area - _clippings_areas
-
-    def centroid_above_axis(self, elevation: float):
-        pass
