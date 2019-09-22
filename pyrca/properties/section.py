@@ -111,6 +111,13 @@ class Section:
 
         return kd
 
+    def get_height(self):
+        """
+        Get the height of the section.
+        :return:
+        """
+        return get_highest_node(self.main_section).y - get_lowest_node(self.main_section).y
+
     def gross_area_of_concrete(self):
         """
         Calculates the gross area of concrete
