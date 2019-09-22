@@ -59,6 +59,9 @@ class BeamSection:
     def get_Es(self):
         return pressure_convert(self.Es, self.unit)
 
+    def get_fc_prime(self):
+        return pressure_convert(self.fc_prime, self.unit)
+
     def get_fr(self):
         return pressure_convert(self.fr, self.unit)
 
