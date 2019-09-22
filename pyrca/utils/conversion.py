@@ -86,3 +86,12 @@ def to_square_millimeters(area: float):
     :return: Area in square millimeters.
     """
     return area * math.pow(MILLIMETER_PER_INCH, 2)
+
+
+def to_english_moment(moment_in_metric: float):
+    """
+    Converts N-mm to lb-ft.
+    :param moment_in_metric: Moment in N-mm
+    :return: Moment in lb-ft.
+    """
+    return moment_in_metric * POUND_PER_KILOGRAM / GRAVITY_METRIC / MILLIMETER_PER_INCH / 12
