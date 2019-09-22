@@ -172,6 +172,13 @@ class Section:
 
         return _width
 
+    def get_neutral_axis_elevation(self):
+        """
+        Get the elevation of neutral axis.
+        :return:
+        """
+        return get_highest_node(self.main_section).y - self.get_centroid()
+
     def area_above_axis(self, elevation: float):
         """
         Get the concrete area above an axis
