@@ -1,6 +1,6 @@
 import unittest
-from ..properties.node import Node
-from .calculators import calculate_area, calculate_centroid_y, \
+from pyrca.properties.node import Node
+from pyrca.utils.calculators import calculate_area, calculate_centroid_y, \
     get_centroid_above_axis, get_area_above_axis
 
 
