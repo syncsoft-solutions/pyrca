@@ -25,7 +25,7 @@ class Section:
             self.error_message = 'Main section nodes must be 3 or more.'
             return False
 
-    def set_clippings(self, clippings: list[list[Node]]):
+    def set_clippings(self, clippings: list):
         _clips = []
         for _clipping in clippings:
             if len(_clipping) < 3:
@@ -39,7 +39,7 @@ class Section:
         self.error_message = 'Clippings has been set.'
         return True
 
-    def add_clipping(self, clipping: list[Node]):
+    def add_clipping(self, clipping: list):
         if len(clipping) < 3:
             self.has_error = True
             self.error_message = 'Clipping must have 3 or more nodes.'
