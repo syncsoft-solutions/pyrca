@@ -8,6 +8,7 @@ from ..utils.conversion import *
 from ..utils.calculators import *
 from ..utils.beam_constants import *
 from ..analysis.beam_analysis_result import BeamAnalysisResult
+from ..analysis.stress_distribution import StressDistribution
 
 
 def calculate_fs(fs: float, fy: float):
@@ -165,7 +166,7 @@ class BeamAnalyses:
 
         return _analysis
 
-    def beam_capacity_analysis(self):
+    def beam_capacity_analysis(self, sd: StressDistribution):
         _analysis = BeamAnalysisResult()
 
         _section = self.beam_section.get_section()
@@ -186,10 +187,53 @@ class BeamAnalyses:
         _kd_y = 0
         _compression_area = 0
 
-        _as_calc = 0
+        _As_calc = 0                        # As calculated
         _kd = 0.01
         _highest_elev = get_highest_node(self.beam_section.get_section().main_section).y
 
+        if sd == StressDistribution.PARABOLIC:
+            # Find kd
+            _iterator = COMPRESSION_SOLID_DY_ITERATION
+
+            # Convert the iterator based on unit
+            if self.unit == Unit.ENGLISH:
+                _kd_iterator = 1 / MILLIMETER_PER_INCH
+            else:
+                _kd_iterator = 1
+
+            while abs((_As_calc - _As) > 0.01 * _As):
+                _cs = 0
+                _cc = self.compression_solid_volume_parabolic(_fc_prime, _kd, _ecu, _highest_elev)
+                _fs = _ecu * _Es * (_d - _kd) / _kd
+                _fs = calculate_fs(_fs, _fy)
+
+                _fsPrime = _fs * (_kd - _d_prime) / (_d - _kd)
+                _fsPrime = calculate_fs(_fs_prime, _fy)
+
+                _cs += _As_Prime * _fs_prime
+
+                _As_calc = (_cc + _cs) / _fs
+
+                if _As_calc > _As:
+                    while _As_calc > _As:
+                        _kd -= _kd_iterator
+                        _cc = self.compression_solid_volume_parabolic(_fc_prime, _kd, _ecu, _highest_elev)
+
+                        _fs = _ecu * _Es * (_d - _kd) / _kd
+                        _fs = calculate_fs(_fs, _fy)
+
+                        _fsPrime = _fs * (_kd - _d_prime) / (_d - _kd)
+                        _fsPrime = calculate_fs(_fs_prime, _fy)
+
+                        _cs += _As_Prime * _fs_prime
+
+                        _As_calc = (_cc + _cs) / _fs
+
+                        _kd_iterator *= 0.5
+                else:
+                    _kd_iterator *= 1.5
+
+                _kd += _kd_iterator
 
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
