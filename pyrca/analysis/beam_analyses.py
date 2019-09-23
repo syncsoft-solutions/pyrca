@@ -192,6 +192,8 @@ class BeamAnalyses:
         _highest_elev = get_highest_node(self.beam_section.get_section().main_section).y
 
         if sd == StressDistribution.PARABOLIC:
+            # For parabilic stress distribution
+
             # Find kd
             _iterator = COMPRESSION_SOLID_DY_ITERATION
 
@@ -234,6 +236,58 @@ class BeamAnalyses:
                     _kd_iterator *= 1.5
 
                 _kd += _kd_iterator
+
+            _my = 0                 # Moment of compression solid to the top
+            _y_bar = 0              # Centroid of compression solid from top
+            _dy = _kd / _iterator
+
+            for _i in range(_iterator, 0, -1):
+                _compression_strip_component = self.beam_compression_strip_parabolic(
+                    _i, _dy, _ecu, _kd, _fc_prime, _highest_elev
+                )
+                _fcy, _by = _compression_strip_component
+
+                _ccy = _fcy * _by * _dy
+
+                _my += _ccy * (_kd - _i * _dy)
+
+            _y_bar = _my / _cc
+
+            _moment = _cc * (_d - _y_bar) + _cs * (_d - _d_prime)
+        else:
+            # For Whitney stress block
+            _beta = get_beta(_fc_prime)
+
+            _a = 0.001                  # Compression block height
+            _As_calc = 0
+
+            while _As_calc < _As:
+                _kd = _a / _beta
+                _fs = _ecu * _Es * (_d - _kd) / _kd
+                _fs = calculate_fs(_fs, _fy)
+
+                _kdy = _highest_elev - _a
+                _compressionArea = _section.area_above_axis(_kdy)
+
+                _cc = _fc * _compression_area
+
+                _fsPrime = _fs * (_kd - _d_prime) / (_d - _kd)
+                _fsPrime = calculate_fs(_fs_prime, _fy)
+
+                _cs = _As_Prime * _fs_prime
+
+                _As_calc = (_cc + _cs) / _fs
+                _a += 0.001
+
+            _compression_centroid = _section.centroid_above_axis(_kdy)
+            _moment = _cc * (_d - _compression_centroid) + _cs * (_d - _d_prime)
+
+        # Set values for analysis
+        _analysis.moment_c = _moment
+        _analysis.kd = _kd
+        _analysis.curvature_c = _ecu / _kd
+
+        return _analysis
 
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
