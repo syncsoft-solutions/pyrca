@@ -166,7 +166,30 @@ class BeamAnalyses:
         return _analysis
 
     def beam_capacity_analysis(self):
-        pass
+        _analysis = BeamAnalysisResult()
+
+        _section = self.beam_section.get_section()
+
+        _ecu = MAX_CONCRETE_STRAIN
+        _Es = ES
+        _d = self.beam_section.get_effective_depth()
+        _d_prime = self.beam_section.steel_compression.get_d_prime(self.unit)
+        _fs = 0.0
+        _fy = self.beam_section.get_fy()
+        _As = self.beam_section.steel_tension.get_total_area(self.unit)
+        _As_Prime = self.beam_section.steel_compression.get_total_area(self.unit)
+        _fs_prime = _fy
+        _cc = 0
+        _cs = 0
+        _fc_prime = self.beam_section.get_fc_prime()
+        _fc = 0.85 * _fc_prime              # Limit for fc to use
+        _kd_y = 0
+        _compression_area = 0
+
+        _as_calc = 0
+        _kd = 0.01
+        _highest_elev = get_highest_node(self.beam_section.get_section().main_section).y
+
 
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
