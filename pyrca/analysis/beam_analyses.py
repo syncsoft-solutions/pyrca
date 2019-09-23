@@ -192,7 +192,7 @@ class BeamAnalyses:
         _highest_elev = get_highest_node(self.beam_section.get_section().main_section).y
 
         if sd == StressDistribution.PARABOLIC:
-            # For parabilic stress distribution
+            # For parabolic stress distribution
 
             # Find kd
             _iterator = COMPRESSION_SOLID_DY_ITERATION
