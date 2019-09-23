@@ -11,6 +11,17 @@ class TestBeamAnalysis(unittest.TestCase):
     _nodes = [Node(0, 0), Node(0, 500), Node(250, 500), Node(250, 0)]
 
     def test_beam_capacity(self):
+        """
+        From the book 'Simplified Reinforced Concrete Design for 2010 NSCP
+        Problem 2.16:
+        A rectangular beam with b = 250 mm and d = 460 m is reinforced for tension only with 3-25 mm bars.
+        The beam is simply supported over a span of 6 m and carries a uniform dead load of 680 N/m including
+        its own weight. Calculate the uniform live load that the beam can carry.
+        Assume fy = 276.5MPa and f'c = 20.7 MPa.
+
+        From solution on the book, Mu = 151.56 kN-m
+        :return:
+        """
         _section = Section()
         _section.set_main_section(self._nodes)
 
