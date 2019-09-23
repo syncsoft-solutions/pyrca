@@ -29,9 +29,9 @@ class TestBeamAnalysis(unittest.TestCase):
         _analysis.beam_section = _bs
         _result = _analysis.beam_capacity_analysis(StressDistribution.WHITNEY)
 
-        _mu = _result.moment_c * 0.9
+        _mu = round(_result.moment_c * 0.9, 2) / 1000000
 
-        self.assertAlmostEqual(_mu, 151.56, 2, msg='Wrong calculation!')
+        self.assertAlmostEqual(_mu, 151.56, 0, msg='Wrong calculation!')
 
 
 if __name__ == '__main__':
