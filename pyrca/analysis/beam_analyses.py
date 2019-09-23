@@ -1,14 +1,14 @@
-from ..properties.unit import Unit
-from ..properties.section import Section
-from ..properties.steel_compression import SteelCompression
-from ..properties.steel_tension import SteelTension
-from ..properties.node import Node
-from ..properties.beam_section import BeamSection
-from ..utils.conversion import *
-from ..utils.calculators import *
-from ..utils.beam_constants import *
-from ..analysis.beam_analysis_result import BeamAnalysisResult
-from ..analysis.stress_distribution import StressDistribution
+from pyrca.properties.unit import Unit
+from pyrca.properties.section import Section
+from pyrca.properties.steel_compression import SteelCompression
+from pyrca.properties.steel_tension import SteelTension
+from pyrca.properties.node import Node
+from pyrca.properties.beam_section import BeamSection
+from pyrca.utils.conversion import *
+from pyrca.utils.calculators import *
+from pyrca.utils.beam_constants import *
+from pyrca.analysis.beam_analysis_result import BeamAnalysisResult
+from pyrca.analysis.stress_distribution import StressDistribution
 
 
 def calculate_fs(fs: float, fy: float):
@@ -260,7 +260,7 @@ class BeamAnalyses:
 
             _a = 0.001                  # Compression block height
             _As_calc = 0
-
+            _kdy = 0
             while _As_calc < _As:
                 _kd = _a / _beta
                 _fs = _ecu * _Es * (_d - _kd) / _kd
