@@ -267,8 +267,7 @@ class BeamAnalyses:
                 _fs = calculate_fs(_fs, _fy)
 
                 _kdy = _highest_elev - _a
-                _compressionArea = _section.area_above_axis(_kdy)
-
+                _compression_area = _section.area_above_axis(_kdy)
                 _cc = _fc * _compression_area
 
                 _fsPrime = _fs * (_kd - _d_prime) / (_d - _kd)
