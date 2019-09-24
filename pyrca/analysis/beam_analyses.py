@@ -166,7 +166,7 @@ class BeamAnalyses:
 
         return _analysis
 
-    def beam_capacity_analysis(self, sd: StressDistribution):
+    def beam_capacity_analysis(self, sd: StressDistribution) -> BeamAnalysisResult:
         _analysis = BeamAnalysisResult()
 
         _section = self.beam_section.get_section()
