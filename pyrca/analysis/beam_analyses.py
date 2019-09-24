@@ -64,7 +64,7 @@ class BeamAnalyses:
             return to_square_inches(self.balanced_steel_tension)
         return self.balanced_steel_tension
 
-    def uncracked_analysis(self):
+    def uncracked_analysis(self) -> BeamAnalysisResult:
         """
         Analysis before cracking of concrete.
         :return: BeamAnalysisResult object
