@@ -303,7 +303,17 @@ class BeamAnalyses:
         :param sd:
         :return:
         """
-        pass
+        _section = self.beam_section.get_section()
+
+        _ecu = MAX_CONCRETE_STRAIN
+        _Es = ES
+        _d = self.beam_section.get_effective_depth()
+        _d_prime = self.beam_section.steel_compression.get_d_prime(self.unit)
+        _As_prime = self.beam_section.steel_compression.get_total_area(self.unit)
+        _fy = self.beam_section.get_fy()
+        _fc_prime = self.beam_section.get_fc_prime()
+        _fc = 0.85 * _fc_prime
+        _highest_elev = get_highest_node(_section.main_section)
 
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
