@@ -167,6 +167,14 @@ class BeamAnalyses:
         return _analysis
 
     def beam_capacity_analysis(self, sd: StressDistribution) -> BeamAnalysisResult:
+        """
+        The main purpose of this method is to calculate the beam nominal moment capacity
+        using the specified stress distribution.
+        :param sd: Either the parabolic which was derived by integration and the
+                    Whitney's rectangular stress block which is a close representation of
+                    the parabolic.
+        :return:
+        """
         _analysis = BeamAnalysisResult()
 
         _section = self.beam_section.get_section()
