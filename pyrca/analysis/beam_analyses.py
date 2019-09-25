@@ -306,7 +306,6 @@ class BeamAnalyses:
         _section = self.beam_section.get_section()
 
         _ecu = MAX_CONCRETE_STRAIN
-        _Es = ES
         _d = self.beam_section.get_effective_depth()
         _d_prime = self.beam_section.steel_compression.get_d_prime(self.unit)
         _As_prime = self.beam_section.steel_compression.get_total_area(self.unit)
@@ -314,6 +313,46 @@ class BeamAnalyses:
         _fc_prime = self.beam_section.get_fc_prime()
         _fc = 0.85 * _fc_prime
         _highest_elev = get_highest_node(_section.main_section)
+        _kd = _ecu * ES * _d / (_fy + _ecu * ES)
+
+        if sd == StressDistribution.PARABOLIC:
+            _cc = self.compression_solid_volume_parabolic(_fc_prime, _kd, _ecu, _highest_elev)
+
+        else:
+            _beta = get_beta(_fc_prime)
+            _a = _beta * _kd
+            _kdy = _highest_elev - _a
+            _compression_area = _section.area_above_axis(_kdy)
+            _cc = _fc * _compression_area
+        _fs_prime = _ecu * ES * (_kd - _d_prime) / _kd
+        _fs_prime = calculate_fs(_fs_prime, _fy)
+        _cs = _As_prime * _fs_prime
+
+        _As_b = (_cc + _cs) / _fy
+
+        # Get the location of the resultant concrete compression
+        _iterator = COMPRESSION_SOLID_DY_ITERATION
+        _dy = _kd / _iterator
+        _my = 0
+        for _i in range(_iterator, 0, -1):
+            _compression_strip_component = self.beam_compression_strip_parabolic(
+                _i, _dy, _ecu, _kd, _fc_prime, _highest_elev
+            )
+            _fc1, _b1 = _compression_strip_component
+            _cc = _fc1 * _b1 * _dy
+            _my += _cc * (_kd - _i * _dy)
+        _y_bar = _my / _cc          # Location of compression concrete resultant from top
+
+        _moment_balance = _cc * (_d - _y_bar) + _cs * (_d - _d_prime)
+
+        self.balanced_steel_tension = _As_b
+
+        _result = BeamAnalysisResult()
+        _result.curvature_c = _ecu / _kd
+        _result.kd = _kd
+        _result.moment_c = _moment_balance
+
+        return _result
 
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
