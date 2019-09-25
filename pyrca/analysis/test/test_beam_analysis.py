@@ -60,7 +60,7 @@ class TestBeamAnalysis(unittest.TestCase):
 
         # Section object
         _section = Section()
-        _section.set_main_section(self._nodes)
+        _section.set_main_section(_nodes)
 
         # Beam section object
         _bs = BeamSection()
