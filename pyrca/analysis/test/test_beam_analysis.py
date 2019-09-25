@@ -55,6 +55,30 @@ class TestBeamAnalysis(unittest.TestCase):
         # Checking the calculation against the manual method.
         self.assertAlmostEqual(_mu, 151.56, 0, msg='Wrong calculation!')
 
+    def test_balanced_analysis(self):
+        _nodes = [Node(0, 0), Node(0, 500), Node(300, 500), Node(300, 0)]
+
+        # Section object
+        _section = Section()
+        _section.set_main_section(_nodes)
+
+        # Beam section object
+        _bs = BeamSection()
+        _bs.set_fc_prime(21)
+        _bs.set_fy(345)
+        _bs.set_effective_depth(460)
+        _bs.section = _section
+
+        _bs.steel_tension = SteelTension()
+
+        # Define analyses object to be able to use the different analysis (e.g. uncrack, capacity/nominal)
+        _analysis = BeamAnalyses()
+        _analysis.beam_section = _bs
+        _result = _analysis.beam_balanced_analysis(StressDistribution.PARABOLIC)
+        _Asb = _analysis.balanced_steel_tension
+
+        self.assertAlmostEqual(_Asb, 3853.33, 1, msg='Wrong calculation!')
+
 
 if __name__ == '__main__':
     unittest.main()

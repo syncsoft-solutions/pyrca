@@ -7,3 +7,6 @@ class Node:
     def __init__(self, lx, ly):
         self.x = lx
         self.y = ly
+
+    def __repr__(self):
+        return f'({self.x}, {self.y})'
