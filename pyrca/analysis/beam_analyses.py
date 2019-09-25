@@ -297,6 +297,14 @@ class BeamAnalyses:
 
         return _analysis
 
+    def beam_balanced_analysis(self, sd: StressDistribution) -> BeamAnalysisResult:
+        """
+        Analyze the beam using the palance condition.
+        :param sd:
+        :return:
+        """
+        pass
+
     def compression_solid_volume_parabolic(self, fc_prime, kd, ecu, highest_elev):
         """
         Concrete compression solid magnitude using parabolic stress block.
