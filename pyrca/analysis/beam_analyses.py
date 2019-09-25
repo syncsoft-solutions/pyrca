@@ -312,7 +312,7 @@ class BeamAnalyses:
         _fy = self.beam_section.get_fy()
         _fc_prime = self.beam_section.get_fc_prime()
         _fc = 0.85 * _fc_prime
-        _highest_elev = get_highest_node(_section.main_section)
+        _highest_elev = get_highest_node(_section.main_section).y
         _kd = _ecu * ES * _d / (_fy + _ecu * ES)
 
         if sd == StressDistribution.PARABOLIC:
