@@ -167,6 +167,14 @@ class BeamAnalyses:
         return _analysis
 
     def beam_capacity_analysis(self, sd: StressDistribution) -> BeamAnalysisResult:
+        """
+        The main purpose of this method is to calculate the beam nominal moment capacity
+        using the specified stress distribution.
+        :param sd: Either the parabolic which was derived by integration and the
+                    Whitney's rectangular stress block which is a close representation of
+                    the parabolic.
+        :return:
+        """
         _analysis = BeamAnalysisResult()
 
         _section = self.beam_section.get_section()
@@ -195,7 +203,7 @@ class BeamAnalyses:
             # For parabolic stress distribution
 
             # Find kd
-            _iterator = COMPRESSION_SOLID_DY_ITERATION
+            _iterator = COMPRESSION_SOLID_DY_ITERATION      # Number of iterations on fining kd.
 
             # Convert the iterator based on unit
             if self.unit == Unit.ENGLISH:
@@ -204,6 +212,7 @@ class BeamAnalyses:
                 _kd_iterator = 1
 
             while abs((_As_calc - _As) > 0.01 * _As):
+                # Loop until the As provided is reached.
                 _cs = 0
                 _cc = self.compression_solid_volume_parabolic(_fc_prime, _kd, _ecu, _highest_elev)
                 _fs = _ecu * _Es * (_d - _kd) / _kd
