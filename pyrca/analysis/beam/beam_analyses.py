@@ -3,8 +3,8 @@ from pyrca.properties.beam.beam_section import BeamSection
 from pyrca.utils.conversion import *
 from pyrca.utils.calculators import *
 from pyrca.utils.beam_constants import *
-from pyrca.analysis.beam_analysis_result import BeamAnalysisResult
-from pyrca.analysis.stress_distribution import StressDistribution
+from pyrca.analysis.beam.beam_analysis_result import BeamAnalysisResult
+from pyrca.analysis.beam.stress_distribution import StressDistribution
 
 
 def calculate_fs(fs: float, fy: float):
