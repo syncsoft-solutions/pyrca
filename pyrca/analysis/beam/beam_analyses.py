@@ -63,6 +63,9 @@ class BeamAnalyses:
     def uncracked_analysis(self) -> BeamAnalysisResult:
         """
         Analysis before cracking of concrete.
+        The stress distribution in this case is linear and continuous down
+        to tension area before cracking. Right after cracking, the stress distribution
+        in the compression area is still linear (triangular in shape).
         :return: BeamAnalysisResult object
         """
         _analysis = BeamAnalysisResult()
