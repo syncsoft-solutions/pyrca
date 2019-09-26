@@ -6,3 +6,5 @@ pyrca.egg-info/*
 
 pyrca/__pycache__/
 pyrca/utils/__pycache__/
+pyrca/analysis/__pycache__/
+pyrca/properties/__pycache__/
