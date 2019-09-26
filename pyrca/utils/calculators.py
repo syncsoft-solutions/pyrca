@@ -1,4 +1,4 @@
-from ..properties.node import Node
+from pyrca.properties.beam.node import Node
 import math
 
 

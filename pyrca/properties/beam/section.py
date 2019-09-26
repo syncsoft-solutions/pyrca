@@ -1,4 +1,4 @@
-from ..utils.calculators import *
+from pyrca.utils.calculators import *
 
 from .node import Node
 

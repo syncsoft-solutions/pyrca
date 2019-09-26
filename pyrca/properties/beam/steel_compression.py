@@ -1,5 +1,5 @@
-from ..utils.conversion import *
-from .unit import *
+from pyrca.utils.conversion import *
+from pyrca.properties.unit import *
 
 """
 Definition of the SteelCompression class.

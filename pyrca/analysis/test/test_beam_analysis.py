@@ -1,8 +1,8 @@
 import unittest
-from pyrca.properties.node import Node
-from pyrca.properties.section import Section
-from pyrca.properties.beam_section import BeamSection
-from pyrca.properties.steel_tension import SteelTension
+from pyrca.properties.beam.node import Node
+from pyrca.properties.beam.section import Section
+from pyrca.properties.beam.beam_section import BeamSection
+from pyrca.properties.beam.steel_tension import SteelTension
 from ..beam_analyses import BeamAnalyses
 from ..stress_distribution import StressDistribution
 

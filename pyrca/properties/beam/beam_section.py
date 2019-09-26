@@ -1,5 +1,5 @@
-from ..utils.beam_constants import *
-from ..utils.conversion import *
+from pyrca.utils.beam_constants import *
+from pyrca.utils.conversion import *
 from .steel_tension import SteelTension
 from .steel_compression import SteelCompression
 from .section import Section
