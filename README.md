@@ -45,3 +45,7 @@ Python package for analysis of concrete structures.
 - Corbel Design
 - Report Generation
 - Diagrams Generation 
+
+### Mindmap
+
+![mindmap](assets/mindmap.png)
