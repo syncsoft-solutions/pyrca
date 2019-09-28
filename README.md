@@ -12,27 +12,27 @@ Python package for analysis of concrete structures.
 
 - Beam Balanced Analysis for flexure
 
-#### v0.3.x
+#### v0.3.x (October 1, 2019)
 
 - Beam Shear Analysis
 
-#### v0.4.x
+#### v0.4.x (October 3, 2019)
 
 - Beam Design for Flexure
 
-#### v0.5.x
+#### v0.5.x (October 4, 2019)
 
 - Beam Design for Shear
 
-#### v0.6.x
+#### v0.6.x (October 5, 2019)
 
 - Column Analysis
 
-#### v0.7.x
+#### v0.7.x (October 7, 2019)
 
 - Column Interaction
 
-#### v0.8.x
+#### v0.8.x (October 8, 2019)
 
 - Column Design
 
