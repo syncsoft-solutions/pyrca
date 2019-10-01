@@ -56,7 +56,7 @@ class TestBeamAnalysis(unittest.TestCase):
         self.assertAlmostEqual(_mu, 151.56, 0, msg='Wrong calculation!')
 
     def test_balanced_analysis(self):
-        _nodes = [Node(0, 0), Node(0, 500), Node(300, 500), Node(300, 0)]
+        _nodes = [Node(0, 0), Node(0, 540), Node(250, 540), Node(250, 0)]
 
         # Section object
         _section = Section()
@@ -64,9 +64,9 @@ class TestBeamAnalysis(unittest.TestCase):
 
         # Beam section object
         _bs = BeamSection()
-        _bs.set_fc_prime(21)
-        _bs.set_fy(345)
-        _bs.set_effective_depth(460)
+        _bs.set_fc_prime(28)
+        _bs.set_fy(415)
+        _bs.set_effective_depth(500)
         _bs.section = _section
 
         _bs.steel_tension = SteelTension()
@@ -77,7 +77,7 @@ class TestBeamAnalysis(unittest.TestCase):
         _result = _analysis.beam_balanced_analysis(StressDistribution.PARABOLIC)
         _Asb = _analysis.balanced_steel_tension
 
-        self.assertAlmostEqual(_Asb, 3853.33, 1, msg='Wrong calculation!')
+        self.assertAlmostEqual(_Asb, 3602, 0, msg='Wrong calculation!')
 
 
 if __name__ == '__main__':
