@@ -111,7 +111,8 @@ def get_nodes_above_axis(axis_elevation: float, nodes: list):
         x3 = _nodes[i].x
 
         if y1 == y3:
-            _new_nodes.append(_nodes[i])
+            if _nodes[i].y >= axis_elevation:
+                _new_nodes.append(_nodes[i])
             continue
 
         x2 = (axis_elevation - y3) / (y1 - y3) * (x1 - x3) + x3
