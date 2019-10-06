@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name="pyrca",
-    version="0.2.1",
+    version="0.2.2",
     author="Alexius Sayco Academia",
     author_email="alexius.academia@gmail.com",
     description="Python package for analysis of concrete structures.",
